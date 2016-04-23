@@ -19,7 +19,7 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<html ng-app="app">
+<html>
 
 <head>
     <meta charset="utf-8" />
@@ -46,7 +46,7 @@
     <title>Demo App</title>
 </head>
 
-<body ng-controller="MaintCtrl as m">
+<body >
 
 <div class="tab-bar tab-bar--top tab-bar--top-border">
   <label class="tab-bar__item tab-bar--top-border__item">
@@ -79,40 +79,9 @@
   <div class="checkbox__checkmark"></div>
   OFF
 </label>
-<h2>Store data offline </h2>
-
-
-  <h2>Current LocalStorage value is = <em></em></h2>
-  <input type="text" ng-model="m.value">
 
 
 
 </body>
 
 </html>
-<script>
-var app;
-app = angular.module("app", []);
-app.controller("MaintCtrl", function(LS) {
-  this.greeting = "This is a localstorage demo app";
-  this.value = LS.getData();
-  this.latestData = function() {
-    return LS.getData();
-  };
-  this.update = function(val) {
-    return LS.setData(val);
-  };
-});
-app.factory("LS", function($window, $rootScope) {
-  return {
-    setData: function(val) {
-      $window.localStorage && $window.localStorage.setItem('my-storage', val);
-      return this;
-    },
-    getData: function() {
-      return $window.localStorage && $window.localStorage.getItem('my-storage');
-    }
-  };
-});
-
-</script>
